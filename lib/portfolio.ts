@@ -13,7 +13,7 @@ export type ResearchProject = {
   details: string[];
   figure:
     | { kind: "image"; src: string; alt: string; href: string }
-    | { kind: "diagram"; alt: string };
+    | { kind: "diagram"; alt: string; href: string };
   repository?: string;
 };
 
@@ -25,7 +25,7 @@ export const profile = {
   paragraphs: [
     "I build, maintain, and evolve production systems, APIs, integrations, and process automation, with most of the work in financial solutions.",
     "That work covers payroll-deducted loans, contract management, collection, protest, and credit recovery: business rules, data processing, and integrations across systems and services. It also includes bank integrations and platforms used by public agencies, financial institutions, and companies.",
-    "On the full-stack side, I connect frontend, backend, and external services—asynchronous flows, state recovery, interfaces for data processing, and links between applications and automations.",
+    "On the full-stack side, I connect frontend, backend, and external services: asynchronous flows, state recovery, interfaces for data processing, and links between applications and automations.",
     "B.Sc. in Computer Science at UTFPR, with academic work in artificial intelligence, reinforcement learning, and multi-agent systems through research during the degree.",
   ],
   portrait: "/portrait/gabriel-maestre-costa.jpg",
@@ -91,10 +91,10 @@ export const experience: Role[] = [
       "I work on two production platforms for financial operations. ConsigFACIL is a multi-tenant system for payroll-deducted loans: each client runs its own agreements, margins, contracts, and payroll integrations. ProFACIL is a credit-recovery product for protest and tax-debt certificates, used by public and private creditors to bring debtors, titles, and notary offices into one operation.",
     details: [
       "On ConsigFACIL, my day-to-day is the loan life cycle inside each tenant: contracts, margins, agreements, discounts, portability, auditing, reports, and links to payroll systems.",
-      "I opened manual contract changes that the legacy flow blocked—editing installments and refactoring the paths that generate, consign, and settle a contract—so operations could correct live deals without workarounds.",
+      "I opened manual contract changes that the legacy flow blocked, editing installments and refactoring the paths that generate, consign, and settle a contract, so operations could correct live deals without workarounds.",
       "I worked on portability of reservation and other client-specific rules, where the same codebase behaves differently per tenant configuration.",
       "On ProFACIL, the product tracks credit recovery through protest: debtors, tax-debt certificates (CDAs), titles, notary offices, negotiations, fees, and dashboards.",
-      "I built the asynchronous import of CDAs from an external integration, so large batches can start in the background, be polled to completion, previewed, and then saved—without locking the operator on a single upload.",
+      "I built the asynchronous import of CDAs from an external integration, so large batches can start in the background, be polled to completion, previewed, and then saved, without locking the operator on a single upload.",
       "I added state recovery after refresh or route change, so a long import or review can resume instead of starting over.",
       "I aligned the contracts between the Angular interface, the Java API, and n8n automations, including the technical specification used by both sides.",
       "I evolved the ProFACIL backend with another developer: business rules, data modeling, legacy maintenance, and calls to external services.",
@@ -105,7 +105,7 @@ export const experience: Role[] = [
     role: "Software Developer",
     period: "May 2025–Sep 2025",
     summary:
-      "I worked on a debt CRM for collection operations: the desk that holds each debtor’s balance, lets the team simulate and close agreements, issues invoices, and settles what was paid—wired to bank APIs for the financial steps. I also coordinated the technology team’s backlog—what to build and in what order—including WhatsApp bots and outbound messaging for collection.",
+      "I worked on a debt CRM for collection operations: the desk that holds each debtor’s balance, lets the team simulate and close agreements, issues invoices, and settles what was paid, wired to bank APIs for the financial steps. I also coordinated the technology team’s backlog: what to build and in what order, including WhatsApp bots and outbound messaging for collection.",
     details: [
       "I coordinated the tech team around the backlog: gathering what needed to be built, prioritizing it, and keeping implementation aligned with the collection operation, with focus on WhatsApp robots and message dispatch.",
       "I extended the CRM around agreements, interest, penalties, discounts, and the collection steps that operators run every day.",
@@ -187,13 +187,14 @@ export const projects: ResearchProject[] = [
       "I modeled the intersection in discrete time with four approaches: queues on each side, the current phase, elapsed green time, and pressure between the north-south and east-west axes.",
       "Actions hold the phase or switch to one approach (N, S, E, W) or a paired phase (NS, EW). Arrivals are Poisson, service is a fixed rate, green has a minimum, and a phase change is penalized.",
       "I used a reward that combines throughput, queue length, and saturation. Both approaches share that reward, the transition, and the exploration and learning schedules, paired on seeds and arrival sequences.",
-      "On the MASPY side, I used an Intersection environment and TrafficLight agents—one controller plus observers—learning with Q-learning through an environment model.",
+      "On the MASPY side, I used an Intersection environment and TrafficLight agents (one controller plus observers), learning with Q-learning through an environment model.",
       "I built the baseline as the same intersection in a tabular environment, trained with classical SARSA.",
       "I ran a pipeline that trains and evaluates both on two intersections, then measures convergence, recovery from a sudden demand shock, and an ablation of the discount factor.",
       "I tracked throughput, average queue size, and recovery after the shock, wrote CSV outputs with comparative plots, and used a Pygame view for live training and replay of a recorded run.",
     ],
     figure: {
       kind: "diagram",
+      href: "/projects/maspy-architecture.svg",
       alt: "MASPY and a SARSA baseline both feed run_experiments.py, which writes runs_output together with plot_results.py.",
     },
     repository: "https://github.com/Dev-Maestre/Smart-Queue-Agents-W-Maspy",

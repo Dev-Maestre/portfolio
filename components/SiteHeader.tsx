@@ -2,10 +2,11 @@
 
 import DirectActions from "./DirectActions";
 import { usePreferences } from "./PreferencesProvider";
+import ThemeSwitch from "./ThemeSwitch";
 import styles from "./SiteHeader.module.css";
 
 export default function SiteHeader() {
-  const { copy, theme, locale, toggleTheme, toggleLocale } = usePreferences();
+  const { copy, locale, toggleLocale } = usePreferences();
 
   const sections = [
     { href: "#experience", label: copy.experience },
@@ -24,18 +25,38 @@ export default function SiteHeader() {
               className={styles.pref}
               type="button"
               onClick={toggleLocale}
-              aria-pressed={locale === "pt-BR"}
+              aria-label={locale === "pt-BR" ? "Switch to English" : "Mudar para português"}
             >
-              {locale === "pt-BR" ? copy.languageToEn : copy.languageToPt}
+              <svg
+                className={styles.globe}
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" strokeWidth="1.5" />
+                <path
+                  d="M4.5 7.5c2.2 1 4.8 1.5 7.5 1.5s5.3-.5 7.5-1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M4.5 16.5c2.2-1 4.8-1.5 7.5-1.5s5.3.5 7.5 1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              </svg>
+              <span className={styles.localePair} aria-hidden="true">
+                <span className={locale === "pt-BR" ? styles.localeActive : undefined}>pt-br</span>
+                <span className={styles.localeSep}>|</span>
+                <span className={locale === "en" ? styles.localeActive : undefined}>en-us</span>
+              </span>
             </button>
-            <button
-              className={styles.pref}
-              type="button"
-              onClick={toggleTheme}
-              aria-pressed={theme === "dark"}
-            >
-              {theme === "dark" ? copy.themeToLight : copy.themeToDark}
-            </button>
+            <ThemeSwitch />
           </div>
         </div>
         <div className={styles.groups}>

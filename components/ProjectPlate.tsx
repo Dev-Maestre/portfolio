@@ -99,11 +99,24 @@ export default function ProjectPlate({
       aria-label={diagram ? project.figure.alt : undefined}
     >
       {project.figure.kind === "image" ? (
-        <a className={styles.plateLink} href={project.figure.href} target="_blank" rel="noreferrer">
+        <a
+          className={styles.plateLink}
+          href={project.figure.href}
+          target="_blank"
+          rel="noreferrer"
+        >
           <img src={project.figure.src} alt={project.figure.alt} />
         </a>
       ) : (
-        <ArchitectureDiagram />
+        <a
+          className={styles.plateLink}
+          href={project.figure.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={project.figure.alt}
+        >
+          <ArchitectureDiagram />
+        </a>
       )}
       <figcaption className={styles.plateCaption}>Fig. {index + 1}</figcaption>
     </figure>

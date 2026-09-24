@@ -41,6 +41,7 @@
 .pref {
   display: inline-flex;
   align-items: center;
+  gap: var(--space-2);
   min-height: 44px;
   padding: 0;
   border: 0;
@@ -57,6 +58,32 @@
   cursor: pointer;
 }
 
+.globe {
+  display: block;
+  flex-shrink: 0;
+}
+
+.localePair {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.localeSep {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-normal);
+}
+
+.localePair > span:not(.localeSep):not(.localeActive) {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-normal);
+}
+
+.localeActive {
+  color: var(--color-text-primary);
+  border-bottom: var(--border-width-hairline) solid var(--color-border-primary);
+}
+
 .pref[aria-pressed="true"] {
   border-bottom-color: var(--color-border-primary);
 }
@@ -68,6 +95,11 @@
 .pref:focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
+}
+
+.pref:disabled {
+  cursor: wait;
+  opacity: 0.55;
 }
 
 .groups {

@@ -170,3 +170,15 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
 }
+
+/* Paint stage sits behind content; page surfaces clear so the sweep shows through.
+   Console / tech slip keep their paper vars and stay opaque. */
+html[data-painting] {
+  --color-bg-primary: transparent;
+  --color-bg-secondary: transparent;
+  --color-bg-tertiary: transparent;
+}
+
+html[data-painting] body {
+  background: transparent;
+}

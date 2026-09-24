@@ -1,0 +1,100 @@
+.shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* Viewport-fixed veil so ink lanes share space with fixed paint agents,
+   even when the page was scrolled before the theme toggle. */
+.inkVeil {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--color-text-primary);
+
+  --color-bg-primary: transparent;
+  --color-bg-secondary: transparent;
+  --color-bg-tertiary: transparent;
+  --paint-scroll-y: 0px;
+}
+
+.inkVeil[data-from="light"] {
+  --color-text-primary: #1a1612;
+  --color-text-secondary: #3f3a33;
+  --color-text-tertiary: #6b645b;
+  --color-text-inverse: #f3efe4;
+  --color-text-link: #1a1612;
+  --color-border-primary: #1a1612;
+  --color-border-secondary: #cfc6b4;
+  --color-border-focus: #1a1612;
+  --color-accent-primary: #1a1612;
+  --color-accent-primary-hover: #3a342c;
+  --color-accent-primary-active: #000000;
+  --color-accent-secondary: #8c2f2f;
+  --color-bg-inverse: #1c1915;
+  --shadow-focus: 0 0 0 2px transparent, 0 0 0 4px #1a1612;
+}
+
+.inkVeil[data-from="dark"] {
+  --color-text-primary: #ebe4d6;
+  --color-text-secondary: #c9c0b0;
+  --color-text-tertiary: #9a9184;
+  --color-text-inverse: #1a1612;
+  --color-text-link: #ebe4d6;
+  --color-border-primary: #ebe4d6;
+  --color-border-secondary: #4a453c;
+  --color-border-focus: #ebe4d6;
+  --color-accent-primary: #ebe4d6;
+  --color-accent-primary-hover: #ffffff;
+  --color-accent-primary-active: #c9c0b0;
+  --color-accent-secondary: #e08a8a;
+  --color-bg-inverse: #ebe4d6;
+  --shadow-focus: 0 0 0 2px transparent, 0 0 0 4px #ebe4d6;
+}
+
+.inkBand {
+  position: absolute;
+  right: 0;
+  height: 34%;
+  width: 100%;
+  overflow: hidden;
+  animation: ink-wipe 1.15s var(--easing-out) forwards;
+}
+
+.inkBandContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+}
+
+.inkHeader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 1;
+}
+
+/* Sticky header cannot stick inside a transformed clone; hide it and
+   paint a viewport header strip in the top lane instead. */
+.inkBandContent :global(header) {
+  visibility: hidden;
+}
+
+@keyframes ink-wipe {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inkVeil {
+    display: none;
+  }
+}

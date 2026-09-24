@@ -69,7 +69,7 @@ export const ui: Record<Locale, UiCopy> = {
     actionLinkedin: "LinkedIn",
     actionGithub: "GitHub",
     techNoteFile: "notes/technologies.txt",
-    techNoteEnd: "— end of note —",
+    techNoteEnd: "end of note",
   },
   "pt-BR": {
     portfolio: "Portfólio",
@@ -103,6 +103,6 @@ export const ui: Record<Locale, UiCopy> = {
     actionLinkedin: "LinkedIn",
     actionGithub: "GitHub",
     techNoteFile: "notas/tecnologias.txt",
-    techNoteEnd: "— fim da nota —",
+    techNoteEnd: "fim da nota",
   },
 };

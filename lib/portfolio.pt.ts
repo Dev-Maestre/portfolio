@@ -8,7 +8,7 @@ export const profilePt = {
   paragraphs: [
     "Desenvolvo, mantenho e evoluo sistemas de produção, APIs, integrações e automação de processos, com a maior parte do trabalho em soluções financeiras.",
     "Esse trabalho cobre consignação em folha, gestão de contratos, cobrança, protesto e recuperação de crédito: regras de negócio, processamento de dados e integrações entre sistemas e serviços. Também inclui integrações bancárias e plataformas usadas por órgãos públicos, instituições financeiras e empresas.",
-    "No lado full stack, conecto frontend, backend e serviços externos — fluxos assíncronos, recuperação de estado, interfaces para processamento de dados e ligações entre aplicações e automações.",
+    "No lado full stack, conecto frontend, backend e serviços externos: fluxos assíncronos, recuperação de estado, interfaces para processamento de dados e ligações entre aplicações e automações.",
     "Bacharel em Ciência da Computação pela UTFPR, com atuação acadêmica em inteligência artificial, aprendizagem por reforço e sistemas multiagentes em projetos de pesquisa durante a graduação.",
   ],
   portrait: "/portrait/gabriel-maestre-costa.jpg",
@@ -74,10 +74,10 @@ export const experiencePt: Role[] = [
       "Trabalho em duas plataformas de produção para operações financeiras. ConsigFACIL é um sistema multi-tenant de consignação em folha: cada cliente roda seus convênios, margens, contratos e integrações com a folha. ProFACIL é o produto de recuperação de crédito por protesto e CDAs, usado por credores públicos e privados para reunir devedores, títulos e cartórios numa só operação.",
     details: [
       "No ConsigFACIL, meu dia a dia é o ciclo do contrato dentro de cada tenant: contratos, margens, convênios, descontos, portabilidade, auditoria, relatórios e ligações com sistemas de folha.",
-      "Abri alteração manual de contrato que o legado bloqueava — edição de parcelas e refatoração dos caminhos que geram, consignam e quitam o contrato — para a operação corrigir negócios vivos sem gambiarra.",
+      "Abri alteração manual de contrato que o legado bloqueava, com edição de parcelas e refatoração dos caminhos que geram, consignam e quitam o contrato, para a operação corrigir negócios vivos sem gambiarra.",
       "Trabalhei portabilidade de reserva e outras regras específicas de cliente, em que o mesmo código se comporta diferente conforme a configuração do tenant.",
       "No ProFACIL, o produto acompanha a recuperação de crédito via protesto: devedores, CDAs, títulos, cartórios, negociações, honorários e dashboards.",
-      "Implementei a importação assíncrona de CDAs a partir de integração externa, para lotes grandes começarem em segundo plano, serem acompanhados por polling, pré-visualizados e depois salvos — sem travar o operador num upload único.",
+      "Implementei a importação assíncrona de CDAs a partir de integração externa, para lotes grandes começarem em segundo plano, serem acompanhados por polling, pré-visualizados e depois salvos, sem travar o operador num upload único.",
       "Incluí recuperação de estado após atualizar a página ou mudar de rota, para retomar uma importação ou revisão longa em vez de recomeçar.",
       "Alinhei os contratos entre a interface Angular, a API Java e as automações n8n, incluindo a especificação técnica usada pelos dois lados.",
       "Evoluí o backend do ProFACIL com outro desenvolvedor: regras de negócio, modelagem de dados, manutenção de legado e chamadas a serviços externos.",
@@ -88,7 +88,7 @@ export const experiencePt: Role[] = [
     role: "Desenvolvedor de Software",
     period: "Mai 2025–Set 2025",
     summary:
-      "Trabalhei num CRM de dívidas para operação de cobrança: a mesa que guarda o saldo de cada devedor, permite simular e fechar acordos, emitir boletos e baixar o que foi pago — ligada a APIs bancárias nos passos financeiros. Também coordenei a equipe de tecnologia no backlog — o que implementar e em qual ordem — inclusive robôs de WhatsApp e disparo de mensagens para cobrança.",
+      "Trabalhei num CRM de dívidas para operação de cobrança: a mesa que guarda o saldo de cada devedor, permite simular e fechar acordos, emitir boletos e baixar o que foi pago, ligada a APIs bancárias nos passos financeiros. Também coordenei a equipe de tecnologia no backlog: o que implementar e em qual ordem, inclusive robôs de WhatsApp e disparo de mensagens para cobrança.",
     details: [
       "Coordenei a equipe de tecnologia em torno do backlog: reunir o que precisava ser construído, priorizar e manter a implementação alinhada à operação de cobrança, com foco em robôs de WhatsApp e disparo de mensagens.",
       "Ampliei o CRM em torno de acordos, juros, multas, descontos e os passos de cobrança que a equipe usa no dia a dia.",
@@ -170,13 +170,14 @@ export const projectsPt: ResearchProject[] = [
       "Modelei o cruzamento em tempo discreto com quatro vias: filas em cada abordagem, a fase atual, o tempo de verde decorrido e a pressão entre os eixos norte-sul e leste-oeste.",
       "As ações mantêm a fase ou alternam para uma abordagem (N, S, L, O) ou uma fase combinada (NS, LO). Chegadas são Poisson, o atendimento tem taxa fixa, o verde tem mínimo e a troca de fase é penalizada.",
       "Usei uma recompensa que combina vazão, tamanho de fila e saturação. As duas abordagens compartilham essa recompensa, a transição e os schedulers de exploração e aprendizagem, pareados em seeds e sequências de chegada.",
-      "No lado MASPY, usei um ambiente Intersection e agentes TrafficLight — um controlador e observadores — aprendendo com Q-learning por meio de um modelo de ambiente.",
+      "No lado MASPY, usei um ambiente Intersection e agentes TrafficLight (um controlador e observadores), aprendendo com Q-learning por meio de um modelo de ambiente.",
       "Construí o baseline como o mesmo cruzamento em ambiente tabular, treinado com SARSA clássico.",
       "Rodei um pipeline que treina e avalia ambos em dois cruzamentos, depois mede convergência, recuperação a um choque súbito de demanda e uma ablação do fator de desconto.",
       "Acompanhei vazão, tamanho médio de fila e recuperação após o choque, gravei saídas em CSV com gráficos comparativos e usei visualização em Pygame para treino ao vivo e replay de uma execução gravada.",
     ],
     figure: {
       kind: "diagram",
+      href: "/projects/maspy-architecture.svg",
       alt: "MASPY e um baseline SARSA alimentam run_experiments.py, que grava runs_output junto com plot_results.py.",
     },
     repository: "https://github.com/Dev-Maestre/Smart-Queue-Agents-W-Maspy",
