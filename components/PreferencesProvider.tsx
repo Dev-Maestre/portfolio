@@ -46,7 +46,7 @@ const PreferencesContext = createContext<Preferences | null>(null);
 
 const localeKey = "portfolio-locale";
 const themeKey = "portfolio-theme";
-const paintMs = 1400;
+const paintMs = 2800;
 
 function readLocale(): Locale {
   if (typeof window === "undefined") return "en";
@@ -198,7 +198,7 @@ export default function PreferencesProvider({ children }: { children: ReactNode 
             <div
               key={lane.top}
               className={styles.inkBand}
-              style={{ top: lane.top, animationDelay: lane.inkDelay }}
+                style={{ top: lane.top, animationDelay: lane.typeDelay }}
             >
               {lane.top === "0%" && headerSnapshot ? (
                 <div

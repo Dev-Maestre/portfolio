@@ -21,41 +21,54 @@
   left: 0;
   width: 0;
   background: var(--paint);
-  animation: paint-sweep 1.15s var(--easing-out) forwards;
+  animation: paint-sweep 1.55s var(--easing-out) forwards;
 }
 
-.bgAgents {
+.surfaceAgents,
+.typeAgents {
   position: fixed;
   inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.surfaceAgents {
   z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
 }
 
-.inkAgents {
-  position: fixed;
-  inset: 0;
+.typeAgents {
   z-index: 3;
-  overflow: hidden;
-  pointer-events: none;
 }
 
 .agent {
   position: absolute;
-  top: 50%;
   left: 0;
-  color: var(--ink);
-  transform: translate(-40%, -50%);
-  animation: agent-sweep 1.15s var(--easing-out) forwards;
+  color: var(--agent);
+  transform: translate(-50%, -50%);
+  will-change: left, opacity;
 }
 
-.inkAgent {
-  transform: translate(-40%, -50%) scale(0.92);
+.surfaceAgent {
+  animation: surface-run 1.55s var(--easing-out) forwards;
 }
 
-.agent svg {
+.typeAgent {
+  animation: type-run 1.75s var(--easing-out) forwards;
+}
+
+.icon {
   display: block;
-  overflow: visible;
+  width: 44px;
+  height: 32px;
+  background-color: currentColor;
+  -webkit-mask-image: url("/theme/agent.png");
+  mask-image: url("/theme/agent.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
 @keyframes paint-sweep {
@@ -68,20 +81,64 @@
   }
 }
 
-@keyframes agent-sweep {
-  from {
+@keyframes surface-run {
+  0% {
     left: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(2px);
   }
 
-  to {
-    left: 100%;
+  8% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateY(2px);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    left: calc(100% + 56px);
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+@keyframes type-run {
+  0% {
+    left: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-2px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  48% {
+    transform: translate(-50%, -50%) translateY(-2px);
+  }
+
+  86% {
+    opacity: 1;
+  }
+
+  100% {
+    left: calc(100% + 64px);
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .stage,
-  .bgAgents,
-  .inkAgents {
+  .surfaceAgents,
+  .typeAgents {
     display: none;
   }
 }

@@ -59,7 +59,7 @@
   height: 34%;
   width: 100%;
   overflow: hidden;
-  animation: ink-wipe 1.15s var(--easing-out) forwards;
+  animation: ink-wipe 1.75s var(--easing-out) forwards;
 }
 
 .inkBandContent {
