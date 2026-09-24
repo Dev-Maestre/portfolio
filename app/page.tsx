@@ -21,11 +21,11 @@ export default function Page() {
             <Summary />
             <ApiConsole />
           </div>
+          <TechnologyList />
           <ExperienceList />
           <ProjectList />
           <EducationLine />
           <ContactPanel />
-          <TechnologyList />
         </article>
       </main>
     </>

@@ -9,9 +9,9 @@ export default function SiteHeader() {
 
   const sections = [
     { href: "#experience", label: copy.experience },
+    { href: "#technologies", label: copy.technologies },
     { href: "#projects", label: copy.projects },
     { href: "#contact", label: copy.contact },
-    { href: "#technologies", label: copy.technologies },
   ];
 
   return (
