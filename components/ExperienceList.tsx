@@ -1,12 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { experience, type Role } from "../lib/portfolio";
+import type { Role } from "../lib/portfolio";
+import { usePreferences } from "./PreferencesProvider";
 import styles from "./sections.module.css";
 
 const visibleCount = 3;
 
-function RoleEntry({ role }: { role: Role }) {
+function RoleEntry({
+  role,
+  viewMore,
+  viewLess,
+}: {
+  role: Role;
+  viewMore: string;
+  viewLess: string;
+}) {
   const [open, setOpen] = useState(false);
   const detailsId = `details-${role.company}-${role.period}`.replace(/[^a-zA-Z0-9]+/g, "-");
 
@@ -29,7 +38,7 @@ function RoleEntry({ role }: { role: Role }) {
               aria-controls={detailsId}
               onClick={() => setOpen((current) => !current)}
             >
-              {open ? "View less" : "View more"}
+              {open ? viewLess : viewMore}
             </button>
             {open ? (
               <ul id={detailsId} className={styles.details}>
@@ -46,16 +55,22 @@ function RoleEntry({ role }: { role: Role }) {
 }
 
 export default function ExperienceList() {
+  const { copy, experience } = usePreferences();
   const [open, setOpen] = useState(false);
   const visible = open ? experience : experience.slice(0, visibleCount);
   const hasMore = experience.length > visibleCount;
 
   return (
-    <section id="experience" className={styles.section} aria-label="Experience">
-      <h2 className={styles.title}>Experience</h2>
+    <section id="experience" className={styles.section} aria-label={copy.experience}>
+      <h2 className={styles.title}>{copy.experience}</h2>
       <ol className={styles.list}>
         {visible.map((role) => (
-          <RoleEntry key={`${role.company}-${role.period}`} role={role} />
+          <RoleEntry
+            key={`${role.company}-${role.period}`}
+            role={role}
+            viewMore={copy.viewMore}
+            viewLess={copy.viewLess}
+          />
         ))}
       </ol>
       {hasMore ? (
@@ -65,7 +80,7 @@ export default function ExperienceList() {
           aria-expanded={open}
           onClick={() => setOpen((current) => !current)}
         >
-          {open ? "View less" : "View more"}
+          {open ? copy.viewLess : copy.viewMore}
         </button>
       ) : null}
     </section>

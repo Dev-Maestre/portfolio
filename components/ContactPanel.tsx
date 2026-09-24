@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import DirectActions from "./DirectActions";
+import { usePreferences } from "./PreferencesProvider";
 import styles from "./sections.module.css";
 
 type FieldErrors = {
@@ -11,6 +12,7 @@ type FieldErrors = {
 };
 
 export default function ContactPanel() {
+  const { copy } = usePreferences();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -41,18 +43,18 @@ export default function ContactPanel() {
         setName("");
         setEmail("");
         setMessage("");
-        setNotice("Your message was sent.");
+        setNotice(copy.messageSent);
         setNoticeTone("success");
         return;
       }
 
       setErrors(data.errors ?? {});
       if (!data.errors) {
-        setNotice(data.error ?? "Your message was not sent.");
+        setNotice(copy.messageNotSent);
         setNoticeTone("error");
       }
     } catch {
-      setNotice("Your message was not sent.");
+      setNotice(copy.messageNotSent);
       setNoticeTone("error");
     } finally {
       setSending(false);
@@ -60,15 +62,15 @@ export default function ContactPanel() {
   }
 
   return (
-    <section id="contact" className={`${styles.section} ${styles.contact}`} aria-label="Contact">
-      <h2 className={styles.title}>Contact</h2>
-      <nav className={styles.links} aria-label="Direct actions">
+    <section id="contact" className={`${styles.section} ${styles.contact}`} aria-label={copy.contact}>
+      <h2 className={styles.title}>{copy.contact}</h2>
+      <nav className={styles.links} aria-label={copy.actionsNav}>
         <DirectActions />
       </nav>
       <form className={styles.form} method="post" action="#contact" onSubmit={onSubmit} noValidate>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="contact-name">
-            Name
+            {copy.name}
           </label>
           <input
             className={styles.input}
@@ -89,7 +91,7 @@ export default function ContactPanel() {
         </div>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="contact-email">
-            Email
+            {copy.email}
           </label>
           <input
             className={styles.input}
@@ -110,7 +112,7 @@ export default function ContactPanel() {
         </div>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="contact-message">
-            Message
+            {copy.message}
           </label>
           <textarea
             className={styles.textarea}
@@ -130,7 +132,7 @@ export default function ContactPanel() {
           ) : null}
         </div>
         <button className={styles.submit} type="submit" disabled={sending}>
-          {sending ? "Sending" : "Send"}
+          {sending ? copy.sending : copy.send}
         </button>
         {notice ? (
           <p

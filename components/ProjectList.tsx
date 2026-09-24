@@ -1,11 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { projects, type ResearchProject } from "../lib/portfolio";
+import type { ResearchProject } from "../lib/portfolio";
 import ProjectPlate from "./ProjectPlate";
+import { usePreferences } from "./PreferencesProvider";
 import styles from "./sections.module.css";
 
-function ProjectEntry({ project, index }: { project: ResearchProject; index: number }) {
+function ProjectEntry({
+  project,
+  index,
+  viewMore,
+  viewLess,
+}: {
+  project: ResearchProject;
+  index: number;
+  viewMore: string;
+  viewLess: string;
+}) {
   const [open, setOpen] = useState(false);
   const detailsId = `project-${project.title}`.replace(/[^a-zA-Z0-9]+/g, "-");
 
@@ -30,7 +41,7 @@ function ProjectEntry({ project, index }: { project: ResearchProject; index: num
               aria-controls={detailsId}
               onClick={() => setOpen((current) => !current)}
             >
-              {open ? "View less" : "View more"}
+              {open ? viewLess : viewMore}
             </button>
             {open ? (
               <ul id={detailsId} className={styles.details}>
@@ -47,12 +58,20 @@ function ProjectEntry({ project, index }: { project: ResearchProject; index: num
 }
 
 export default function ProjectList() {
+  const { copy, projects } = usePreferences();
+
   return (
-    <section id="projects" className={styles.section} aria-label="Projects">
-      <h2 className={styles.title}>Projects</h2>
+    <section id="projects" className={styles.section} aria-label={copy.projects}>
+      <h2 className={styles.title}>{copy.projects}</h2>
       <ol className={styles.list}>
         {projects.map((project, index) => (
-          <ProjectEntry key={project.title} project={project} index={index} />
+          <ProjectEntry
+            key={project.title}
+            project={project}
+            index={index}
+            viewMore={copy.viewMore}
+            viewLess={copy.viewLess}
+          />
         ))}
       </ol>
     </section>

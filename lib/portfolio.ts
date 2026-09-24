@@ -21,11 +21,12 @@ export const profile = {
   name: "Gabriel Maestre Costa",
   headline: "Backend and full-stack developer",
   summary:
-    "Backend and full-stack developer with experience building and evolving production systems, APIs, integrations, and process automation, mostly for financial solutions.",
+    "Backend and full-stack developer who builds, maintains, and evolves production systems, APIs, integrations, and process automation for financial operations.",
   paragraphs: [
-    "Experience building and evolving production systems, APIs, integrations, and process automation, mostly for financial solutions.",
-    "The work covers PHP, Laravel, Java, Spring Boot, Node.js, PostgreSQL, MySQL, Angular, and TypeScript, along with REST and SOAP, XML and JSON, legacy systems, multi-tenant architecture, and asynchronous processing. Delivery uses GitLab, CI/CD, Docker, Composer, Maven, and SonarQube.",
-    "B.Sc. in Computer Science, with experience in AI, reinforcement learning, and multi-agent systems.",
+    "I build, maintain, and evolve production systems, APIs, integrations, and process automation, with most of the work in financial solutions.",
+    "That work covers payroll-deducted loans, contract management, collection, protest, and credit recovery: business rules, data processing, and integrations across systems and services. It also includes bank integrations and platforms used by public agencies, financial institutions, and companies.",
+    "On the full-stack side, I connect frontend, backend, and external services—asynchronous flows, state recovery, interfaces for data processing, and links between applications and automations.",
+    "B.Sc. in Computer Science at UTFPR, with academic work in artificial intelligence, reinforcement learning, and multi-agent systems through research during the degree.",
   ],
   portrait: "/portrait/gabriel-maestre-costa.jpg",
   portraitPending: false,
@@ -38,25 +39,65 @@ export const profile = {
   },
 };
 
+export const technologies: { label: string; items: string[] }[] = [
+  {
+    label: "Backend",
+    items: ["PHP", "Laravel", "Java", "Spring Boot", "Node.js", "REST", "SOAP", "JPA/Hibernate"],
+  },
+  {
+    label: "Frontend",
+    items: ["Angular", "React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    label: "Data",
+    items: ["PostgreSQL", "MySQL", "SQL", "Flyway", "QueryDSL"],
+  },
+  {
+    label: "Delivery",
+    items: ["Git", "GitLab", "GitFlow", "Docker", "CI/CD", "Composer", "Maven", "SonarQube"],
+  },
+  {
+    label: "Practices",
+    items: [
+      "Automated tests",
+      "Logging",
+      "Error handling",
+      "Authentication",
+      "Authorization",
+      "Auditing",
+      "Legacy systems",
+    ],
+  },
+  {
+    label: "AI",
+    items: [
+      "Python",
+      "Reinforcement learning",
+      "Multi-agent systems",
+      "BDI",
+      "TensorFlow",
+      "Keras-RL",
+      "CARLA",
+    ],
+  },
+];
+
 export const experience: Role[] = [
   {
     company: "Fácil Tecnologia",
     role: "Software Developer",
     period: "Oct 2025–Present",
     summary:
-      "Builds and evolves production systems for payroll-deducted loans, financial operations, collection, and credit recovery. ConsigFACIL is a multi-tenant payroll-loan platform in PHP and PostgreSQL. ProFACIL is a credit-recovery platform, with a Java/Spring Boot API and an Angular/TypeScript interface.",
+      "I work on two production platforms for financial operations. ConsigFACIL is a multi-tenant system for payroll-deducted loans: each client runs its own agreements, margins, contracts, and payroll integrations. ProFACIL is a credit-recovery product for protest and tax-debt certificates, used by public and private creditors to bring debtors, titles, and notary offices into one operation.",
     details: [
-      "On ConsigFACIL, the work covers contracts, margins, agreements, discounts, portability, auditing, reports, and integrations with payroll systems.",
-      "Business rules and financial flows in PHP/PostgreSQL, including migrations, data processing, REST integrations, XML/JSON, and maintenance of a large legacy codebase.",
-      "Work across client environments and configurations, each with its own operation inside the multi-tenant architecture.",
-      "Delivery through GitLab, merge requests, CI/CD, Docker, Composer, and SonarQube.",
-      "On ProFACIL, the platform manages credit recovery through protest: debtors, tax-debt certificates, titles, notary offices, negotiations, fees, dashboards, and external integrations.",
-      "Backend API in Java/Spring Boot, with REST, JPA/Hibernate, PostgreSQL, Flyway, QueryDSL, RSQL, authentication, authorization, and auditing.",
-      "The backend was evolved with another developer: business rules, data modeling, legacy maintenance, and integrations with external services.",
-      "Angular/TypeScript work integrated with the Java backend and n8n automations.",
-      "Asynchronous import of tax-debt certificates, with jobs, polling, state control, preview, persistence, and failure handling.",
-      "State recovery with sessionStorage and a time-to-live, so a flow can resume after a refresh or a route change.",
-      "API contracts aligned across frontend, backend, and n8n, including the technical specification.",
+      "On ConsigFACIL, my day-to-day is the loan life cycle inside each tenant: contracts, margins, agreements, discounts, portability, auditing, reports, and links to payroll systems.",
+      "I opened manual contract changes that the legacy flow blocked—editing installments and refactoring the paths that generate, consign, and settle a contract—so operations could correct live deals without workarounds.",
+      "I worked on portability of reservation and other client-specific rules, where the same codebase behaves differently per tenant configuration.",
+      "On ProFACIL, the product tracks credit recovery through protest: debtors, tax-debt certificates (CDAs), titles, notary offices, negotiations, fees, and dashboards.",
+      "I built the asynchronous import of CDAs from an external integration, so large batches can start in the background, be polled to completion, previewed, and then saved—without locking the operator on a single upload.",
+      "I added state recovery after refresh or route change, so a long import or review can resume instead of starting over.",
+      "I aligned the contracts between the Angular interface, the Java API, and n8n automations, including the technical specification used by both sides.",
+      "I evolved the ProFACIL backend with another developer: business rules, data modeling, legacy maintenance, and calls to external services.",
     ],
   },
   {
@@ -64,13 +105,13 @@ export const experience: Role[] = [
     role: "Software Developer",
     period: "May 2025–Sep 2025",
     summary:
-      "Built collection modules in PHP and MySQL for agreements, interest, penalties, discounts, and collection operations, and bank integrations over SOAP and REST.",
+      "I worked on a debt CRM for collection operations: the desk that holds each debtor’s balance, lets the team simulate and close agreements, issues invoices, and settles what was paid—wired to bank APIs for the financial steps. I also coordinated the technology team’s backlog—what to build and in what order—including WhatsApp bots and outbound messaging for collection.",
     details: [
-      "Modules in PHP/MySQL for agreements, interest, penalties, discounts, and collection operations.",
-      "Integrations and request routing over SOAP and REST, XML and JSON, mainly for bank APIs.",
-      "Flows for debt lookup, agreement simulation, contracts, invoices, settlement, and financial reconciliation.",
-      "Error handling, logging, data normalization, and automation that replaced manual processes.",
-      "Complementary work with HTML, CSS, JavaScript, Apache, and Git.",
+      "I coordinated the tech team around the backlog: gathering what needed to be built, prioritizing it, and keeping implementation aligned with the collection operation, with focus on WhatsApp robots and message dispatch.",
+      "I extended the CRM around agreements, interest, penalties, discounts, and the collection steps that operators run every day.",
+      "I connected bank integrations so debt lookup, agreement simulation, contracts, invoices, and settlement could talk to external financial services.",
+      "I routed and normalized those requests so SOAP and REST payloads from different banks landed as usable records in the CRM.",
+      "I hardened error handling, logging, and automations that replaced manual reconciliation work.",
     ],
   },
   {
@@ -78,12 +119,12 @@ export const experience: Role[] = [
     role: "Software Developer",
     period: "Mar 2025–Sep 2025",
     summary:
-      "Built RESTful APIs in Laravel/PHP and interfaces in React/Next.js, with PostgreSQL, PHP queues, Docker, and CI/CD.",
+      "I built the APIs and screens that connect business systems to each other: backend services for the domain rules, interfaces for the operators, and background jobs for work that should not block the request.",
     details: [
-      "RESTful APIs in Laravel/PHP, with business rules and integration between systems.",
-      "PostgreSQL modeling and optimization, including complex queries.",
-      "React/Next.js interfaces integrated with the backend.",
-      "Process automation with PHP queues and jobs, and delivery with Docker and CI/CD.",
+      "I designed and shipped REST APIs that carried business rules and joined separate systems behind one contract.",
+      "I modeled and tuned the PostgreSQL side for the queries those integrations needed.",
+      "I delivered React/Next.js interfaces that talked to those APIs end to end.",
+      "I moved heavy work into PHP queues and jobs, and shipped with Docker and CI/CD.",
     ],
   },
   {
@@ -91,11 +132,11 @@ export const experience: Role[] = [
     role: "Software Development Intern",
     period: "Mar 2024–Mar 2025",
     summary:
-      "Maintained and evolved a graduate-studies portal in PHP/MySQL, including calls for applications, enrollments, and reports.",
+      "I maintained the graduate-studies portal that runs calls for applications, enrollments, and reports for the postgraduate programs.",
     details: [
-      "Maintenance of the graduate portal used for calls for applications, enrollments, and reports.",
-      "Integration of academic data between systems and upkeep of the enrollment flows.",
-      "Investigation and fix of a password-recovery email failure, and refactoring of interface components in jQuery.",
+      "I kept the portal’s academic flows working: editais, inscriptions, and the reports staff rely on.",
+      "I integrated academic data between systems so enrollment stayed consistent across tools.",
+      "I fixed a password-recovery email failure and cleaned up interface pieces that were blocking users.",
     ],
   },
 ];
@@ -105,12 +146,12 @@ export const projects: ResearchProject[] = [
     title: "Scientific Initiation, Intelligent Agents",
     period: "Mar 2023–Nov 2023",
     summary:
-      "Trained a DQN agent to drive in a simulated city. The control problem was set up in CARLA, the training loop ran in Python with TensorFlow and Keras-RL, and the agent was validated experimentally as a deep network.",
+      "I trained a DQN agent to drive in a simulated city. I set up the control problem in CARLA, ran the training loop in Python with TensorFlow and Keras-RL, and validated the agent experimentally as a deep network.",
     details: [
-      "Vehicle control was formulated as reinforcement learning, with DQN as the learning method.",
-      "Urban scenes were built in CARLA, and the agent was trained with Python, TensorFlow, and Keras-RL.",
-      "Simulators were compared, and deep-network agents were validated experimentally for traffic control.",
-      "The paper, Autonomous vehicle driving using reinforcement-learning techniques, was presented at SICITE 2023 at UTFPR.",
+      "I formulated vehicle control as reinforcement learning, with DQN as the learning method.",
+      "I built urban scenes in CARLA and trained the agent with Python, TensorFlow, and Keras-RL.",
+      "I compared simulators and validated deep-network agents experimentally for traffic control.",
+      "I presented the paper Autonomous vehicle driving using reinforcement-learning techniques at SICITE 2023 at UTFPR.",
     ],
     figure: {
       kind: "image",
@@ -123,12 +164,12 @@ export const projects: ResearchProject[] = [
     title: "Scientific Initiation, Traffic Simulation and AI",
     period: "Mar 2024–Nov 2024",
     summary:
-      "Compared CARLA, SUMO, and Traffic3D before later experiments committed to one of them. The choice rested on realism, behavioral fidelity, computational cost, and how directly each simulator connects to a reinforcement-learning stack.",
+      "I compared CARLA, SUMO, and Traffic3D before later experiments committed to one of them. I based the choice on realism, behavioral fidelity, computational cost, and how directly each simulator connects to a reinforcement-learning stack.",
     details: [
-      "The evaluation covered CARLA, SUMO, and Traffic3D as environments for reinforcement-learning agents.",
-      "The decision criteria were realism, behavioral fidelity, computational performance, and integration with the AI tooling.",
-      "That comparison selected the environment for the intelligent-agent experiments.",
-      "The paper, Analysis and comparison of autonomous-vehicle simulators with reinforcement-learning techniques, was presented at Pré-SICITE 2024 at UTFPR, Ponta Grossa.",
+      "I evaluated CARLA, SUMO, and Traffic3D as environments for reinforcement-learning agents.",
+      "My criteria were realism, behavioral fidelity, computational performance, and integration with the AI tooling.",
+      "That comparison selected the environment I used for the intelligent-agent experiments.",
+      "I presented the paper Analysis and comparison of autonomous-vehicle simulators with reinforcement-learning techniques at Pré-SICITE 2024 at UTFPR, Ponta Grossa.",
     ],
     figure: {
       kind: "image",
@@ -141,15 +182,15 @@ export const projects: ResearchProject[] = [
     title: "MASPY / Thesis",
     period: "Mar 2025–May 2026",
     summary:
-      "Compared a multi-agent learner with a monolithic one on the same intersection. MASPY traffic-light agents learn with Q-learning inside a BDI environment model; a tabular SARSA baseline trains on an equivalent environment, with shared transitions, reward, and exploration.",
+      "I compared a multi-agent learner with a monolithic one on the same intersection. On the MASPY side, traffic-light agents learn with Q-learning inside a BDI environment model; the baseline is tabular SARSA on an equivalent environment, with shared transitions, reward, and exploration.",
     details: [
-      "The intersection is discrete-time and four-way: queues on each approach, the current phase, elapsed green time, and pressure between the north-south and east-west axes.",
+      "I modeled the intersection in discrete time with four approaches: queues on each side, the current phase, elapsed green time, and pressure between the north-south and east-west axes.",
       "Actions hold the phase or switch to one approach (N, S, E, W) or a paired phase (NS, EW). Arrivals are Poisson, service is a fixed rate, green has a minimum, and a phase change is penalized.",
-      "The reward combines throughput, queue length, and saturation. Both approaches share that reward, the transition, and the exploration and learning schedules, paired on seeds and arrival sequences.",
-      "On the MASPY side, an Intersection environment and TrafficLight agents, one controller plus observers, learn with Q-learning through an environment model.",
-      "The baseline is the same intersection as a tabular environment, trained with classical SARSA.",
-      "The pipeline trains and evaluates both on two intersections, then measures convergence, recovery from a sudden demand shock, and an ablation of the discount factor.",
-      "Readouts are throughput, average queue size, and recovery after the shock, written to CSV with comparative plots. A Pygame view supports live training and replay of a recorded run.",
+      "I used a reward that combines throughput, queue length, and saturation. Both approaches share that reward, the transition, and the exploration and learning schedules, paired on seeds and arrival sequences.",
+      "On the MASPY side, I used an Intersection environment and TrafficLight agents—one controller plus observers—learning with Q-learning through an environment model.",
+      "I built the baseline as the same intersection in a tabular environment, trained with classical SARSA.",
+      "I ran a pipeline that trains and evaluates both on two intersections, then measures convergence, recovery from a sudden demand shock, and an ablation of the discount factor.",
+      "I tracked throughput, average queue size, and recovery after the shock, wrote CSV outputs with comparative plots, and used a Pygame view for live training and replay of a recorded run.",
     ],
     figure: {
       kind: "diagram",

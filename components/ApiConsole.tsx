@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./ApiConsole.module.css";
+import { usePreferences } from "./PreferencesProvider";
 
 const endpoints = [
   { value: "/api/profile", label: "GET /api/profile", file: "app/api/profile/route.ts" },
@@ -68,6 +69,7 @@ function JsonText({ value }: { value: unknown }) {
 }
 
 export default function ApiConsole() {
+  const { copy } = usePreferences();
   const [endpoint, setEndpoint] = useState(endpoints[0].value);
   const [slip, setSlip] = useState<Slip | null>(null);
   const [failed, setFailed] = useState(false);
@@ -108,7 +110,7 @@ export default function ApiConsole() {
       <p className={styles.file}>{file}</p>
       <div className={styles.controls}>
         <label className={styles.field}>
-          <span className={styles.label}>Endpoint</span>
+          <span className={styles.label}>{copy.endpoint}</span>
           <select
             className={styles.endpoint}
             value={endpoint}
@@ -122,11 +124,11 @@ export default function ApiConsole() {
           </select>
         </label>
         <button className={styles.execute} type="button" onClick={execute} disabled={busy}>
-          Execute
+          {copy.execute}
         </button>
       </div>
-      <div className={styles.response} aria-live="polite" aria-label="Response">
-        {failed ? <p className={styles.failure}>The response did not arrive.</p> : null}
+      <div className={styles.response} aria-live="polite" aria-label={copy.response}>
+        {failed ? <p className={styles.failure}>{copy.responseFailed}</p> : null}
         {slip ? (
           <>
             <p className={styles.statusLine}>

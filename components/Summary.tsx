@@ -1,7 +1,11 @@
-import { profile } from "../lib/portfolio";
+"use client";
+
+import { usePreferences } from "./PreferencesProvider";
 import styles from "./sections.module.css";
 
 export default function Summary() {
+  const { profile } = usePreferences();
+
   return (
     <section id="summary" className={styles.summary} aria-label="Summary">
       <div className={styles.identity}>
@@ -9,7 +13,7 @@ export default function Summary() {
           <img
             className={styles.portraitImage}
             src={profile.portrait}
-            alt="Gabriel Maestre Costa"
+            alt={profile.name}
             width={400}
             height={500}
           />
